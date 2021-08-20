@@ -145,6 +145,8 @@ def main_menu():
 
 
 def determine_indices(pos_x, pos_y):
+    if pos_x == 25 and pos_y == 24:
+        return [0, 0]
     if pos_x == 25:
         return [int((pos_y - 24) / 63) + 1, 0]
     if pos_y == 24:
@@ -184,14 +186,14 @@ def game():
         screen.fill((255, 255, 255))
         screen.blit(grid, (0, 0))
         screen.blit(red, (red_x, red_y))
-        draw_text('Press "s" for the solution, "r" to reset, "0" to erase, "c" to check', font_2, (255, 0, 255), screen, 60,
+        draw_text('Press "s" for the solution, "r" to reset, "0" to erase, "c" to check', font_2, (255, 0, 255), screen, 20,
                   -7)
         draw_text('Press esc to go back to the menu', font_2, (0, 255, 0), screen, 180, 570)
         pos_y = 35
         for i in range(9):
             for j in range(9):
                 if board[i][j] != 0:
-                    draw_text(str(board[i][j]), font, (0, 0, 0), screen, pos_x, pos_y)
+                    draw_text(str(board[i][j]), font, (255, 0, 0), screen, pos_x, pos_y)
                 elif input_board[i][j] != 0:
                     draw_text(str(input_board[i][j]), font, (0, 0, 0), screen, pos_x, pos_y)
                 pos_x += 63
