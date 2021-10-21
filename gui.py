@@ -1,7 +1,8 @@
 import sys
 
 from main import *
-
+import pygame
+import copy
 board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,17 +12,16 @@ board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-input_board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-import pygame
-import copy
+input_board = board
+
+grid = pygame.image.load('grid.png')
+red = pygame.image.load('red.png')
+bg = pygame.image.load('bg.png')
+pygame.init()
+font = pygame.font.Font('font.ttf', 30)
+font_2 = pygame.font.Font('font.ttf', 25)
+screen = pygame.display.set_mode((600, 600))
+
 
 def check_if_solved():
     global temp
@@ -33,13 +33,6 @@ def check_if_solved():
         return False
 
 
-grid = pygame.image.load('grid.png')
-red = pygame.image.load('red.png')
-bg = pygame.image.load('bg.png')
-pygame.init()
-font = pygame.font.Font('font.ttf', 30)
-font_2 = pygame.font.Font('font.ttf', 25)
-screen = pygame.display.set_mode((600, 600))
 
 
 def reset():
@@ -90,24 +83,8 @@ def main_menu():
                  [0, 0, 0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-        temp = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-        input_board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+        temp = board
+        input_board = board
         screen.blit(bg, (0, 0))
         draw_text('Main Menu', font, (255, 255, 255), screen, 20, 20)
         button_1 = pygame.Rect(50, 100, 200, 50)
